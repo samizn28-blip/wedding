@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دعوة زفاف: محمد & أريج</title>
+    <style>
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Times New Roman', serif;
+            background: #f8f4eb;
+            /* رابط بديل سريع ومفتوح للخلفية */
+            background-image: radial-gradient(circle at top left, rgba(255,253,245,0.9), transparent 40%),
+                              url('https://unsplash.com');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            display: flex; justify-content: center; align-items: center; min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        #animation-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #f8f4eb;
+            background-image: url('https://unsplash.com');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 1000; transition: opacity 1s ease;
+        }
+
+        .logo { font-size: 4.5rem; font-style: italic; font-weight: bold; color: #af8c55; margin-bottom: 10px; }
+        .intro-text { font-size: 1.3rem; color: #645a50; text-align: center; padding: 0 20px; }
+
+        .carriage {
+            position: absolute; bottom: 15%; left: -200px; width: 150px;
+            animation: moveCarriage 6s linear forwards;
+        }
+
+        @keyframes moveCarriage {
+            0% { left: -200px; }
+            100% { left: 110%; }
+        }
+
+        .card-container {
+            background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);
+            padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            width: 90%; max-width: 450px; text-align: center;
+            border: 1px solid rgba(175, 140, 85, 0.3); display: none;
+        }
+
+        h1 { color: #372d23; font-size: 2rem; margin-top: 10px; }
+        p { color: #4b4641; font-size: 1.1rem; line-height: 1.8; }
+        .counter { font-size: 1.2rem; font-weight: bold; color: #af8c55; margin: 25px 0; }
+        
+        .btn {
+            display: block; width: 100%; padding: 14px; margin: 12px 0;
+            border: none; border-radius: 30px; font-size: 1.1rem; font-weight: bold;
+            color: white; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .btn-accept { background: #2e7d32; }
+        .btn-decline { background: #c62828; }
+
+        /* زر صغير لتفعيل الصوت وضمان عمله بكفاءة */
+        #music-trigger {
+            background: #af8c55; color: white; padding: 10px 20px;
+            border: none; border-radius: 20px; font-size: 1rem; cursor: pointer;
+            margin-top: 20px; z-index: 1001; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ملف صوتي حقيقي ومباشر بصيغة mp3 مدعوم بالكامل -->
+    <audio id="bg-audio" loop>
+        <source src="https://soundhelix.com" type="audio/mpeg">
+    </audio>
+
+    <!-- المشهد الأول -->
+    <div id="animation-screen">
+        <div class="logo">M & A</div>
+        <div class="intro-text">أهلاً بكم في خطوتنا الأولى معاً...</div>
+        <!-- زر بدء الاستعراض لتخطي حماية المتصفح وتشغيل الصوت فوراً -->
+        <button id="music-trigger" onclick="startInvitation()">✨ اضغط لفتح الدعوة الملكية ✨</button>
+        <!-- رابط مستقر ومباشر للعربة الذهبية المتحركة -->
+        <img id="carriage-img" class="carriage" src="https://wikimedia.org" style="display: none;" alt="Carriage">
+    </div>
+
+    <!-- المشهد الثاني -->
+    <div class="card-container" id="main-card">
+        <div style="color: #af8c55; font-size: 1.2rem;">M &hearts; A</div>
+        <h1>حفل زفاف محمد & أريج</h1>
+        <p>بقلوب تملؤها المحبة ونفوس يغمرها الفرح، يتشرف <b>محمد وأريج</b> بدعوتكم لمشاركتهم ليلة العمر وعقد قرانهما المبارك.<br><br>حضوركم وتواجدكم معنا يضفي على فرحتنا بهجةً وسروراً.</p>
+        
+        <div class="counter">
+            المقبولين: <span id="yes-count">0</span> | المعتذرين: <span id="no-count">0</span>
+        </div>
+
+        <button class="btn btn-accept" onclick="vote('yes')">قبول الدعوة بكل حب</button>
+        <button class="btn btn-decline" onclick="vote('no')">الاعتذار عن الحضور</button>
+    </div>
+
+    <script>
+        function startInvitation() {
+            // 1. تشغيل الموسيقى فوراً بعد تفاعل المستخدم وتخطي الحماية
+            const audio = document.getElementById('bg-audio');
+            audio.play().catch(e => console.log("خطأ في تشغيل الصوت: ", e));
+
+            // 2. إخفاء زر التفعيل وإظهار العربة لتبدأ الحركة
+            document.getElementById('music-trigger').style.display = 'none';
+            const carriage = document.getElementById('carriage-img');
+            carriage.style.display = 'block';
+
+            // 3. التبديل التلقائي إلى كرت الدعوة بعد 5 ثوانٍ من حركة العربة
+            setTimeout(() => {
+                const animScreen = document.getElementById('animation-screen');
+                const mainCard = document.getElementById('main-card');
+                animScreen.style.opacity = '0';
+                setTimeout(() => {
+                    animScreen.style.display = 'none';
+                    mainCard.style.display = 'block';
+                }, 1000);
+            }, 5000);
+        }
+
+        // جلب العدادات من الذاكرة المحلية
+        let yes = localStorage.getItem('yesCount') || 0;
+        let no = localStorage.getItem('noCount') || 0;
+        document.getElementById('yes-count').innerText = yes;
+        document.getElementById('no-count').innerText = no;
+
+        function vote(type) {
+            if(localStorage.getItem('voted')) {
+                alert('عذراً، لقد قمت بتأكيد خيارك مسبقاً لهذا الحفل!');
+                return;
+            }
+
+            if(type === 'yes') {
+                yes++;
+                localStorage.setItem('yesCount', yes);
+                document.getElementById('yes-count').innerText = yes;
+                alert('تم تأكيد حضوركم بنجاح. نتشرف بكم!');
+            } else {
+                no++;
+                localStorage.setItem('noCount', no);
+                document.getElementById('no-count').innerText = no;
+                alert('نشكركم لمشاركتنا التهنئة.');
+            }
+            localStorage.setItem('voted', 'true');
+        }
+    </script>
+</body>
+</html>
