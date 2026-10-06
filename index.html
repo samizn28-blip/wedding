@@ -1,123 +1,166 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alexa & Richard - Wedding Invitation</title>
+  <title>دعوة زفاف فاخرة - أميرة ويوسف</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Reem+Kufi:wght@500;700&family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- صوت الخلفية -->
+  <!-- الموسيقى التي تختارها على ذوقك -->
   <audio id="bg-music" loop src="your-music-file.mp3"></audio>
 
-  <!-- الحاوية الرئيسية -->
+  <!-- زر التحكم بالصوت Floating Floating Floating Button -->
+  <button id="music-toggle" class="music-btn hidden">
+    <span id="music-icon">⏸</span>
+  </button>
+
   <div class="invitation-container">
 
-    <!-- المشهد الأول: المظروف الكامل مع الختم -->
+    <!-- المشهد الأول: المظروف المائل المزخرف بالختم الشمعي "بسم الله الرحمن الرحيم" -->
     <section class="envelope-scene" id="envelopeScene">
       <div class="envelope-wrapper">
         <div class="envelope" id="envelope">
-          <!-- غطاء المظروف العلوي -->
-          <div class="flap top-flap"></div>
-          
-          <!-- الجيوب الجانبية والبطانة -->
-          <div class="pocket"></div>
-
-          <!-- بطاقة الدعوة المطوية داخل المظروف -->
-          <div class="card-preview">
-            <h2>Alexa & Richard</h2>
-            <p>are getting married!</p>
+          <div class="flap top-flap">
+            <div class="arabic-emboss"></div>
           </div>
-
-          <!-- الختم الشمعي الذهبي -->
+          <div class="pocket"></div>
+          <div class="card-preview"></div>
+          
           <div class="wax-seal" id="waxSeal">
-            <span>Click to open</span>
+            <div class="seal-text">بسم الله<br>الرحمن الرحيم</div>
           </div>
         </div>
+        <p class="open-instruction">إضغط على الختم لفتح الدعوة</p>
       </div>
     </section>
 
-    <!-- المشهد الثاني: محتوى الدعوة الكامل (يظهر بعد فتح المظروف) -->
+    <!-- المشهد الثاني: محتوى الدعوة الفاخر والمتحرك -->
     <main class="invitation-content hidden" id="invitationContent">
       
-      <!-- فيديو الزفاف / الغلاف -->
-      <section class="hero-header">
-        <div class="video-container">
-          <video autoplay loop muted playsinline width="100%">
-            <source src="wedding-video.mp4" type="video/mp4">
-          </video>
+      <!-- غلاف الدعوة / صورة الثريا والنخيل الأندلسية -->
+      <header class="hero-header">
+        <div class="hero-overlay">
+          <h1 class="names-title">Amira & Yusuf</h1>
+          <p class="hero-date">20 Mai 2027<br>à partir de 16h</p>
         </div>
-        <h1>Alexa & Richard</h1>
-        <p class="subtitle">are getting married!</p>
       </header>
 
-      <!-- ميزة كشف التاريخ -->
-      <section class="date-section">
-        <h2>The Date</h2>
-        <p class="instruction">Scratch to reveal the date</p>
-        <div class="scratch-container">
-          <div class="scratch-card">
-            <span class="date-val">14</span>
-            <canvas class="scratch-canvas"></canvas>
-            <small>DAY</small>
-          </div>
-          <div class="scratch-card">
-            <span class="date-val">September</span>
-            <canvas class="scratch-canvas"></canvas>
-            <small>MONTH</small>
-          </div>
-          <div class="scratch-card">
-            <span class="date-val">2025</span>
-            <canvas class="scratch-canvas"></canvas>
-            <small>YEAR</small>
-          </div>
+      <!-- نص الدعوة الإسلامية/الرسمية -->
+      <section class="card-section text-center">
+        <div class="bismillah">بسم الله الرحمن الرحيم</div>
+        <h2 class="couple-arabic">الآنسة أميرة والسيد يوسف</h2>
+        <p class="invitation-text">
+          يسعدهما ويشرفهما أن يدعوا حضرتكم الكريمة<br>
+          لمشاركتهما فرحة حفل زفافهما
+        </p>
+        <p class="event-date-details">
+          وذلك بمشيئة الله تعالى يوم<br>
+          <strong>السبت 20 ماي 2027</strong><br>
+          على الساعة الرابعة مساءً
+        </p>
+        <p class="hall-name">بقاعة<br><span>Beldi Country Club</span></p>
+      </section>
+
+      <!-- العداد التنازلي Countdown -->
+      <section class="card-section text-center">
+        <h3 class="section-title-en">La Célébration Commence</h3>
+        <div class="countdown-timer" id="countdown">
+          <div class="time-box"><span id="days">00</span><small>Days</small></div>
+          <div class="time-box"><span id="hours">00</span><small>Hours</small></div>
+          <div class="time-box"><span id="minutes">00</span><small>Minutes</small></div>
+          <div class="time-box"><span id="seconds">00</span><small>Seconds</small></div>
         </div>
       </section>
 
-      <!-- الرسالة الشخصية -->
-      <section class="letter-section">
-        <div class="blue-envelope">
-          <div class="letter-card">
-            <h3>Dear friends and family,</h3>
-            <p>As we get ready to say "I do", we feel grateful for the wonderful people in our lives. Your support means the world to us!</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- الجدول الزمني -->
-      <section class="timeline-section">
-        <h2>Schedule of Events</h2>
+      <!-- جدول المواعيد Chronologie -->
+      <section class="card-section">
+        <h3 class="section-title-en text-center">Chronologie de l'événement</h3>
         <div class="timeline">
-          <div class="timeline-item"><span>16:30</span><p>Opening of the doors</p></div>
-          <div class="timeline-item"><span>17:00</span><p>Ceremony</p></div>
-          <div class="timeline-item"><span>18:00</span><p>Cocktail and dancing time</p></div>
-          <div class="timeline-item"><span>20:00</span><p>Dinner</p></div>
-          <div class="timeline-item"><span>21:00</span><p>Party and Open Bar</p></div>
+          <div class="timeline-row">
+            <span class="time">16:00</span>
+            <div class="line-node"></div>
+            <span class="event">Welcome Reception</span>
+          </div>
+          <div class="timeline-row">
+            <span class="time">17:00</span>
+            <div class="line-node"></div>
+            <span class="event">Nikah Ceremony</span>
+          </div>
+          <div class="timeline-row">
+            <span class="time">19:00</span>
+            <div class="line-node"></div>
+            <span class="event">Dinner</span>
+          </div>
+          <div class="timeline-row">
+            <span class="time">20:00</span>
+            <div class="line-node"></div>
+            <span class="event">Party</span>
+          </div>
         </div>
       </section>
 
-      <!-- قواعد اللباس والمعرض -->
-      <section class="dress-code-section">
-        <h2>Dress Code</h2>
-        <p class="dress-desc">We would be very happy if your outfit is in the colours of the wedding theme.</p>
-        <div class="color-palette">
-          <span style="background:#fce4ec"></span>
-          <span style="background:#f8bbd0"></span>
-          <span style="background:#e1bee7"></span>
-          <span style="background:#bbdefb"></span>
-          <span style="background:#90caf9"></span>
-        </div>
-        <div class="gallery-slider">
-          <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=400&q=80" alt="Outfit 1">
-          <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=400&q=80" alt="Outfit 2">
-          <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=400&q=80" alt="Outfit 3">
+      <!-- الموقع والتوجيه الخريطة Lieu -->
+      <section class="card-section text-center">
+        <h3 class="section-title-en">Lieu</h3>
+        <div class="location-box">
+          <p class="location-title">Beldi Country Club</p>
+          <p class="location-sub">Marrakech, Morocco</p>
+          <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=80" class="venue-img" alt="Venue">
+          
+          <!-- زر الموقع والتوجيه -->
+          <a href="https://maps.google.com" target="_blank" class="map-btn">
+            📍 فتح الموقع على الخريطة (Google Maps)
+          </a>
         </div>
       </section>
 
-      <!-- تأكيد الحضور -->
-      <section class="rsvp-section">
-        <button class="rsvp-btn" onclick="alert('Thank you for confirming!')">RSVP</button>
+      <!-- قواعد اللباس Dress Code -->
+      <section class="card-section text-center">
+        <h3 class="section-title-en">Dress Code</h3>
+        <p class="dress-text">We kindly invite you to dress in elegant attire that reflects the style and spirit of our special day.</p>
+        
+        <div class="dress-details">
+          <h4>Ladies</h4>
+          <p>Formal dresses in elegant, polished styles are encouraged.</p>
+          <h4>Gentlemen</h4>
+          <p>Well-tailored suits with classic dress shoes are preferred.</p>
+        </div>
+      </section>
+
+      <!-- نموذج تأكيد الحضور المربوط بـ Formspree -->
+      <section class="card-section text-center">
+        <h3 class="section-title-en">Confirmez Votre Présence</h3>
+        
+        <form action="https://formspree.io/f/https://formspree.io/f/xgaowyqv" method="POST" class="rsvp-form">
+          <div class="input-group">
+            <label>الاسم الكامل / Nom</label>
+            <input type="text" name="name" required placeholder="أدخل اسمك الكريم">
+          </div>
+
+          <div class="input-group">
+            <label>عدد الأشخاص / Nombre de personnes</label>
+            <input type="number" name="guests_count" min="1" max="10" value="1" required>
+          </div>
+
+          <div class="input-group">
+            <label>هل ستحضر؟ / Serez-vous présent?</label>
+            <div class="radio-options">
+              <label class="radio-btn">
+                <input type="radio" name="attending" value="Oui" checked>
+                <span>نعم، سأحضر ببالغ السرور</span>
+              </label>
+              <label class="radio-btn">
+                <input type="radio" name="attending" value="Non">
+                <span>أعتذر عن الحضور</span>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">إرسال التأكيد / SOUMETTRE</button>
+        </form>
       </section>
 
     </main>
