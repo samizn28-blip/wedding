@@ -3,44 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>دعوة زفاف فاخرة - أميرة ويوسف</title>
+  <title>دعوة زفاف - أميرة ويوسف</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Reem+Kufi:wght@500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- الموسيقى التي تختارها على ذوقك -->
+  <!-- الموسيقى الخلفية -->
   <audio id="bg-music" loop src="your-music-file.mp3"></audio>
 
-  <!-- زر التحكم بالصوت Floating Floating Floating Button -->
+  <!-- زر التحكم بالصوت Floating Button -->
   <button id="music-toggle" class="music-btn hidden">
     <span id="music-icon">⏸</span>
   </button>
 
   <div class="invitation-container">
 
-    <!-- المشهد الأول: المظروف المائل المزخرف بالختم الشمعي "بسم الله الرحمن الرحيم" -->
+    <!-- المشهد الأول: الظرف النقشي الفاخر مع الختم الكريمي -->
     <section class="envelope-scene" id="envelopeScene">
-      <div class="envelope-wrapper">
-        <div class="envelope" id="envelope">
-          <div class="flap top-flap">
-            <div class="arabic-emboss"></div>
-          </div>
-          <div class="pocket"></div>
-          <div class="card-preview"></div>
-          
-          <div class="wax-seal" id="waxSeal">
-            <div class="seal-text">بسم الله<br>الرحمن الرحيم</div>
+      <div class="envelope-card">
+        
+        <!-- غطاء الظرف العلوي المحفور -->
+        <div class="flap top-flap" id="topFlap">
+          <div class="embossed-flowers-top"></div>
+        </div>
+
+        <!-- خلفية الظرف المحفورة بالورد -->
+        <div class="envelope-body">
+          <div class="embossed-pattern-bg"></div>
+        </div>
+
+        <!-- الختم اللؤلؤي/الكريمي مع النقش والنص -->
+        <div class="cream-seal" id="waxSeal">
+          <div class="seal-inner-flower">
+            🌿<br>🌸
           </div>
         </div>
-        <p class="open-instruction">إضغط على الختم لفتح الدعوة</p>
+
+        <p class="click-to-open-text" id="openText">اضغط للفتح</p>
       </div>
     </section>
 
-    <!-- المشهد الثاني: محتوى الدعوة الفاخر والمتحرك -->
+    <!-- المشهد الثاني: بطاقة الدعوة الداخلية والتفاصيل -->
     <main class="invitation-content hidden" id="invitationContent">
       
-      <!-- غلاف الدعوة / صورة الثريا والنخيل الأندلسية -->
+      <!-- غلاف الدعوة / الثريا والنخيل -->
       <header class="hero-header">
         <div class="hero-overlay">
           <h1 class="names-title">Amira & Yusuf</h1>
@@ -48,7 +55,7 @@
         </div>
       </header>
 
-      <!-- نص الدعوة الإسلامية/الرسمية -->
+      <!-- النص العربي والديني -->
       <section class="card-section text-center">
         <div class="bismillah">بسم الله الرحمن الرحيم</div>
         <h2 class="couple-arabic">الآنسة أميرة والسيد يوسف</h2>
@@ -75,7 +82,7 @@
         </div>
       </section>
 
-      <!-- جدول المواعيد Chronologie -->
+      <!-- جدول المواعيد Timeline -->
       <section class="card-section">
         <h3 class="section-title-en text-center">Chronologie de l'événement</h3>
         <div class="timeline">
@@ -102,7 +109,7 @@
         </div>
       </section>
 
-      <!-- الموقع والتوجيه الخريطة Lieu -->
+      <!-- الخريطة والموقع Lieu -->
       <section class="card-section text-center">
         <h3 class="section-title-en">Lieu</h3>
         <div class="location-box">
@@ -110,7 +117,6 @@
           <p class="location-sub">Marrakech, Morocco</p>
           <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=80" class="venue-img" alt="Venue">
           
-          <!-- زر الموقع والتوجيه -->
           <a href="https://maps.google.com" target="_blank" class="map-btn">
             📍 فتح الموقع على الخريطة (Google Maps)
           </a>
@@ -130,7 +136,7 @@
         </div>
       </section>
 
-      <!-- نموذج تأكيد الحضور المربوط بـ Formspree -->
+      <!-- نموذج الحضور المربوط بـ Formspree -->
       <section class="card-section text-center">
         <h3 class="section-title-en">Confirmez Votre Présence</h3>
         
