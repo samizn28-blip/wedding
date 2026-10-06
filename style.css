@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background-color: #fcf9f5;
+  color: #4a4a4a;
+  text-align: center;
+}
+
+/* المظروف والختم */
+.envelope-section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eaeaea;
+}
+
+.wax-seal {
+  width: 100px;
+  height: 100px;
+  background: #d4af37;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+
+.wax-seal:hover { transform: scale(1.1); }
+
+/* إخفاء المحتوى قبل فتح المظروف */
+.hidden { display: none; }
+
+/* كروت الكشط */
+.scratch-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.scratch-card {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  background: #fff;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.scratch-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* المعرض الأفقي */
+.gallery-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 20px;
+}
+
+.gallery-slider img {
+  width: 200px;
+  border-radius: 10px;
+}
+
+.rsvp-btn {
+  background-color: #8da9c4;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 18px;
+  border-radius: 25px;
+  cursor: pointer;
+}
