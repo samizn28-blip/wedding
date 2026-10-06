@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
-
 * {
   box-sizing: border-box;
 }
@@ -7,54 +5,51 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Cormorant Garamond', serif;
-  background-color: #f4efea;
-  color: #333;
+  font-family: 'Amiri', serif;
+  background-color: #f7f2eb;
+  color: #4a3e3d;
   display: flex;
   justify-content: center;
-  direction: ltr;
 }
 
 .invitation-container {
   width: 100%;
   max-width: 430px;
-  background: #fdfbf7;
+  background: #fcf9f2;
   min-height: 100vh;
-  box-shadow: 0 0 25px rgba(0,0,0,0.15);
+  box-shadow: 0 0 30px rgba(0,0,0,0.1);
   position: relative;
   overflow: hidden;
 }
 
-/* ================= المشهد الأول: تصميم المظروف التفاعلي ================= */
+/* ================= المشهد الأول: المظروف والختم الشرقي ================= */
 .envelope-scene {
   height: 100vh;
-  background: #e6dfd5 url('https://www.transparenttextures.com/patterns/paper.png');
+  background: radial-gradient(circle, #f5efe6 0%, #e8decb 100%);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  position: relative;
-  perspective: 1000px;
 }
 
 .envelope-wrapper {
   width: 100%;
   max-width: 320px;
-  height: 220px;
+  height: 230px;
   position: relative;
 }
 
 .envelope {
   width: 100%;
   height: 100%;
-  background: #f8f4ee;
-  border-radius: 6px;
+  background: #fdfbf7;
+  border-radius: 8px;
   position: relative;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-  border: 1px solid #e2dad0;
+  box-shadow: 0 15px 35px rgba(110, 85, 60, 0.15);
+  border: 1px solid #e3d7c5;
 }
 
-/* غطاء المظروف العلوي */
 .top-flap {
   position: absolute;
   top: 0;
@@ -63,244 +58,300 @@ body {
   height: 0;
   border-left: 160px solid transparent;
   border-right: 160px solid transparent;
-  border-top: 120px solid #f2ebe1;
+  border-top: 130px solid #f7f0e6;
   transform-origin: top;
-  transition: transform 0.6s ease-in-out;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 3;
 }
 
-/* جيوب المظروف الجانبية */
 .pocket {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 0;
   height: 0;
-  border-left: 160px solid #ede5db;
-  border-right: 160px solid #e8dfd3;
-  border-bottom: 120px solid #ebd3cd;
-  border-radius: 0 0 6px 6px;
+  border-left: 160px solid #f2e8dc;
+  border-right: 160px solid #ede1d3;
+  border-bottom: 125px solid #eae0d0;
+  border-radius: 0 0 8px 8px;
   z-index: 2;
 }
 
-/* البطاقة الداخلية */
-.card-preview {
-  position: absolute;
-  bottom: 10px;
-  left: 15px;
-  right: 15px;
-  height: 190px;
-  background: #ffffff;
-  border-radius: 6px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  transition: transform 0.8s ease-in-out;
-  z-index: 1;
-}
-
-.card-preview h2 {
-  font-family: 'Alex Brush', cursive;
-  font-size: 32px;
-  margin: 10px 0 0;
-}
-
-/* الختم الشمعي */
 .wax-seal {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -20%);
-  width: 85px;
-  height: 85px;
-  background: radial-gradient(circle, #e6ca65 0%, #b89228 100%);
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(circle, #d4af37 0%, #aa820a 100%);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
-  font-family: 'Alex Brush', cursive;
-  font-size: 16px;
+  color: #5c0601;
   cursor: pointer;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-  border: 3px solid #d4af37;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  border: 2px solid #f9e29c;
   z-index: 4;
-  transition: opacity 0.4s, transform 0.3s;
+  transition: transform 0.3s, opacity 0.5s;
 }
 
-/* حركات الانفتاح عند الضغط */
+.seal-text {
+  font-family: 'Amiri', serif;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.open-instruction {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 16px;
+  color: #8c7355;
+  letter-spacing: 1px;
+}
+
 .envelope.open .top-flap {
   transform: rotateX(180deg);
   z-index: 0;
 }
 
-.envelope.open .card-preview {
-  transform: translateY(-120px);
-}
-
-/* ================= المشهد الثاني: محتوى الدعوة الرئيسي ================= */
+/* ================= المشهد الثاني: التصميم الأندلسي الداخلي ================= */
 .hero-header {
-  padding: 30px 20px 40px;
-  text-align: center;
-}
-
-.video-container {
-  width: 100%;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  margin-bottom: 20px;
-}
-
-.video-container video {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.hero-header h1 {
-  font-family: 'Alex Brush', cursive;
-  font-size: 50px;
-  margin: 0;
-}
-
-.hero-header .subtitle {
-  font-size: 20px;
-  font-style: italic;
-  color: #666;
-}
-
-/* التواريخ والأقسام */
-h2 {
-  font-family: 'Alex Brush', cursive;
-  font-size: 40px;
-  text-align: center;
-  margin: 30px 0 10px;
-}
-
-.instruction {
-  text-align: center;
-  font-size: 15px;
-  color: #777;
-  margin-bottom: 20px;
-}
-
-.scratch-container {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  padding: 0 10px;
-}
-
-.scratch-card {
+  height: 480px;
+  background: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
   position: relative;
-  width: 100px;
-  height: 100px;
-  background: #ffffff;
-  border: 1px solid #e5ded6;
-  border-radius: 10px;
   display: flex;
-  flex-direction: column;
+  align-items: flex-end;
   justify-content: center;
-  align-items: center;
+  padding-bottom: 40px;
 }
 
-.scratch-card .date-val {
+.hero-overlay {
+  background: linear-gradient(to top, rgba(252, 249, 242, 1) 10%, rgba(252, 249, 242, 0.2) 100%);
+  width: 100%;
+  padding: 40px 20px 10px;
+  text-align: center;
+}
+
+.names-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 55px;
+  color: #7a5c28;
+  margin: 0;
+  font-weight: normal;
+}
+
+.hero-date {
+  font-family: 'Amiri', serif;
   font-size: 18px;
-  font-weight: bold;
-}
-
-.scratch-card small {
-  font-size: 11px;
-  color: #888;
+  color: #555;
   margin-top: 5px;
 }
 
-.scratch-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  cursor: pointer;
+.card-section {
+  padding: 30px 25px;
+  border-bottom: 1px solid #ebdccb;
 }
 
-/* الرسالة */
-.blue-envelope {
-  background: #e3edf7;
-  margin: 30px 20px;
-  padding: 20px;
-  border-radius: 12px;
+.bismillah {
+  font-family: 'Amiri', serif;
+  font-size: 26px;
+  color: #8c6a2d;
+  margin-bottom: 15px;
 }
 
-.letter-card h3 {
-  font-family: 'Alex Brush', cursive;
-  font-size: 28px;
-  margin-top: 0;
+.couple-arabic {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 15px;
 }
 
-/* الجدول الزمني والمعرض */
-.timeline {
-  padding: 10px 30px;
-  text-align: center;
+.invitation-text {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #555;
 }
 
-.timeline-item {
-  margin-bottom: 20px;
+.event-date-details {
+  font-size: 19px;
+  line-height: 1.7;
+  color: #7a5c28;
+  margin: 20px 0;
 }
 
-.timeline-item span {
+.hall-name span {
   font-size: 20px;
   font-weight: bold;
-  color: #8b7355;
+  color: #333;
 }
 
-.color-palette {
+/* הعداد Countdown */
+.section-title-en {
+  font-family: 'Great Vibes', cursive;
+  font-size: 38px;
+  color: #8c6a2d;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: normal;
+}
+
+.countdown-timer {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
+  direction: ltr;
+}
+
+.time-box {
+  background: #f5ebe0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  min-width: 65px;
+  border: 1px solid #e3d5c3;
+}
+
+.time-box span {
+  display: block;
+  font-size: 22px;
+  font-weight: bold;
+  color: #7a5c28;
+}
+
+.time-box small {
+  font-size: 11px;
+  color: #777;
+}
+
+/* الجدول الزمني Timeline */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  direction: ltr;
+}
+
+.timeline-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.timeline-row .time {
+  font-weight: bold;
+  color: #8c6a2d;
+  width: 50px;
+  text-align: right;
+}
+
+.line-node {
+  width: 12px;
+  height: 12px;
+  background: #d4af37;
+  border-radius: 50%;
+  position: relative;
+}
+
+.timeline-row .event {
+  width: 150px;
+  text-align: left;
+  font-size: 17px;
+}
+
+/* الخريطة Venue */
+.venue-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
   margin: 15px 0;
 }
 
-.color-palette span {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
+.map-btn {
   display: inline-block;
+  background: #7a5c28;
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 16px;
+  transition: background 0.3s;
 }
 
-.gallery-slider {
+/* Formspree RSVP */
+.rsvp-form {
   display: flex;
-  overflow-x: auto;
-  gap: 12px;
-  padding: 10px 20px;
+  flex-direction: column;
+  gap: 15px;
+  text-align: right;
 }
 
-.gallery-slider img {
-  width: 200px;
-  height: 280px;
-  object-fit: cover;
-  border-radius: 10px;
-  flex-shrink: 0;
+.input-group label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #555;
 }
 
-.rsvp-section {
-  text-align: center;
-  padding: 30px 20px 50px;
+.input-group input[type="text"],
+.input-group input[type="number"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d3c4b1;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 16px;
 }
 
-.rsvp-btn {
-  background-color: #8da9c4;
-  color: white;
-  border: none;
-  padding: 14px 45px;
-  font-size: 20px;
-  font-family: 'Cormorant Garamond', serif;
-  border-radius: 30px;
+.radio-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.radio-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   cursor: pointer;
 }
 
-.hidden {
-  display: none;
+.submit-btn {
+  background: #8c6a2d;
+  color: #fff;
+  border: none;
+  padding: 14px;
+  font-size: 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s;
 }
+
+.submit-btn:hover {
+  background: #684e1f;
+}
+
+/* زر الموسيقى Floating */
+.music-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 45px;
+  height: 45px;
+  background: #8c6a2d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  z-index: 99;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+.text-center { text-align: center; }
+.hidden { display: none !important; }
