@@ -1,60 +1,61 @@
+// 1. فتح المظروف والانتقال للمشهد الرئيسي
 document.getElementById('waxSeal').addEventListener('click', function() {
   const envelope = document.getElementById('envelope');
   const waxSeal = document.getElementById('waxSeal');
   const envelopeScene = document.getElementById('envelopeScene');
   const invitationContent = document.getElementById('invitationContent');
-  
-  // 1. إخفاء الختم الشمعي
+  const musicBtn = document.getElementById('music-toggle');
+  const music = document.getElementById('bg-music');
+
   waxSeal.style.opacity = '0';
   
-  // 2. فتح غطاء المظروف وبروز البطاقة
   setTimeout(() => {
     envelope.classList.add('open');
   }, 300);
 
-  // 3. الانتقال للمشهد الثاني (تفاصيل الدعوة والفيديو)
   setTimeout(() => {
     envelopeScene.style.display = 'none';
     invitationContent.classList.remove('hidden');
-    
-    // تشغيل الصوت والفيديو تلقائياً
-    var music = document.getElementById('bg-music');
+    musicBtn.classList.remove('hidden');
+
+    // تشغيل الموسيقى تلقائياً
     if (music && music.src) {
-      music.play().catch(e => console.log("Audio block"));
+      music.play().catch(e => console.log("Audio autoplay restricted"));
     }
-  }, 1600);
+  }, 1400);
 });
 
-// برمجة تأثير الكشط للكروت
-document.querySelectorAll('.scratch-card').forEach(card => {
-  const canvas = card.querySelector('.scratch-canvas');
-  const ctx = canvas.getContext('2d');
-  
-  canvas.width = card.offsetWidth;
-  canvas.height = card.offsetHeight;
+// 2. التحكم في إيقاف/تشغيل الموسيقى
+const music = document.getElementById('bg-music');
+const musicBtn = document.getElementById('music-toggle');
+const musicIcon = document.getElementById('music-icon');
 
-  ctx.fillStyle = '#b3cdd1';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  let isDrawing = false;
-
-  function scratch(e) {
-    if (!isDrawing) return;
-    const rect = canvas.getBoundingClientRect();
-    const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
-    const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
-
-    ctx.globalCompositeOperation = 'destination-out';
-    ctx.beginPath();
-    ctx.arc(x, y, 16, 0, Math.PI * 2);
-    ctx.fill();
+musicBtn.addEventListener('click', () => {
+  if (music.paused) {
+    music.play();
+    musicIcon.textContent = '⏸';
+  } else {
+    music.pause();
+    musicIcon.textContent = '▶';
   }
-
-  canvas.addEventListener('mousedown', () => isDrawing = true);
-  canvas.addEventListener('mouseup', () => isDrawing = false);
-  canvas.addEventListener('mousemove', scratch);
-
-  canvas.addEventListener('touchstart', () => isDrawing = true);
-  canvas.addEventListener('touchend', () => isDrawing = false);
-  canvas.addEventListener('touchmove', scratch);
 });
+
+// 3. العداد التنازلي Countdown
+const targetDate = new Date("May 20, 2027 16:00:00").getTime();
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const difference = targetDate - now;
+
+  if (difference > 0) {
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+    document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+    document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+    document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+  }
+}, 1000);
