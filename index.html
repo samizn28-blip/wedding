@@ -11,91 +11,118 @@
   <!-- صوت الخلفية -->
   <audio id="bg-music" loop src="your-music-file.mp3"></audio>
 
-  <!-- 1. قسم المظروف والختم الشمعي -->
-  <section class="envelope-section" id="envelopeSection">
-    <div class="envelope" id="envelope">
-      <div class="wax-seal" id="waxSeal">
-        <div class="seal-inner">❤️<br>Click to open</div>
-      </div>
-    </div>
-  </section>
+  <!-- الحاوية الرئيسية -->
+  <div class="invitation-container">
 
-  <!-- 2. محتوى الدعوة الرئيسي -->
-  <main class="invitation-content hidden" id="invitationContent">
-    
-    <!-- الغلاف/الهيدر -->
-    <header class="hero-header">
-      <h1>Alexa & Richard</h1>
-      <p class="subtitle">are getting married!</p>
-    </header>
+    <!-- المشهد الأول: المظروف الكامل مع الختم -->
+    <section class="envelope-scene" id="envelopeScene">
+      <div class="envelope-wrapper">
+        <div class="envelope" id="envelope">
+          <!-- غطاء المظروف العلوي -->
+          <div class="flap top-flap"></div>
+          
+          <!-- الجيوب الجانبية والبطانة -->
+          <div class="pocket"></div>
 
-    <!-- 3. ميزة كشف التاريخ (Scratch Cards) -->
-    <section class="date-section">
-      <h2>The Date</h2>
-      <p>Scratch to reveal the date</p>
-      <div class="scratch-container">
-        <div class="scratch-card">
-          <span class="date-val">14</span>
-          <canvas class="scratch-canvas"></canvas>
-          <small>DAY</small>
-        </div>
-        <div class="scratch-card">
-          <span class="date-val">September</span>
-          <canvas class="scratch-canvas"></canvas>
-          <small>MONTH</small>
-        </div>
-        <div class="scratch-card">
-          <span class="date-val">2025</span>
-          <canvas class="scratch-canvas"></canvas>
-          <small>YEAR</small>
+          <!-- بطاقة الدعوة المطوية داخل المظروف -->
+          <div class="card-preview">
+            <h2>Alexa & Richard</h2>
+            <p>are getting married!</p>
+          </div>
+
+          <!-- الختم الشمعي الذهبي -->
+          <div class="wax-seal" id="waxSeal">
+            <span>Click to open</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 4. الرسالة الداخلية داخل مظروف أزرق -->
-    <section class="letter-section">
-      <div class="blue-envelope">
-        <div class="letter-card">
-          <h3>Dear friends and family,</h3>
-          <p>As we get ready to say "I do", we feel grateful for the wonderful people in our lives...</p>
+    <!-- المشهد الثاني: محتوى الدعوة الكامل (يظهر بعد فتح المظروف) -->
+    <main class="invitation-content hidden" id="invitationContent">
+      
+      <!-- فيديو الزفاف / الغلاف -->
+      <section class="hero-header">
+        <div class="video-container">
+          <video autoplay loop muted playsinline width="100%">
+            <source src="wedding-video.mp4" type="video/mp4">
+          </video>
         </div>
-      </div>
-    </section>
+        <h1>Alexa & Richard</h1>
+        <p class="subtitle">are getting married!</p>
+      </header>
 
-    <!-- 5. الجدول الزمني (Schedule of Events) -->
-    <section class="timeline-section">
-      <h2>Schedule of Events</h2>
-      <div class="timeline">
-        <div class="timeline-item left"><span>16:30</span><p>Opening of the doors</p></div>
-        <div class="timeline-item right"><span>17:00</span><p>Ceremony</p></div>
-        <div class="timeline-item left"><span>18:00</span><p>Cocktail and dancing time</p></div>
-        <div class="timeline-item right"><span>20:00</span><p>Dinner</p></div>
-        <div class="timeline-item left"><span>21:00</span><p>Party and Open Bar</p></div>
-      </div>
-    </section>
+      <!-- ميزة كشف التاريخ -->
+      <section class="date-section">
+        <h2>The Date</h2>
+        <p class="instruction">Scratch to reveal the date</p>
+        <div class="scratch-container">
+          <div class="scratch-card">
+            <span class="date-val">14</span>
+            <canvas class="scratch-canvas"></canvas>
+            <small>DAY</small>
+          </div>
+          <div class="scratch-card">
+            <span class="date-val">September</span>
+            <canvas class="scratch-canvas"></canvas>
+            <small>MONTH</small>
+          </div>
+          <div class="scratch-card">
+            <span class="date-val">2025</span>
+            <canvas class="scratch-canvas"></canvas>
+            <small>YEAR</small>
+          </div>
+        </div>
+      </section>
 
-    <!-- 6. قواعد اللباس ومعرض الصور (Dress Code) -->
-    <section class="dress-code-section">
-      <h2>Dress Code</h2>
-      <div class="color-palette">
-        <span style="background:#fce4ec"></span>
-        <span style="background:#f8bbd0"></span>
-        <span style="background:#e1bee7"></span>
-        <span style="background:#bbdefb"></span>
-      </div>
-      <div class="gallery-slider">
-        <img src="outfit1.jpg" alt="Dress Code 1">
-        <img src="outfit2.jpg" alt="Dress Code 2">
-        <img src="outfit3.jpg" alt="Dress Code 3">
-      </div>
-    </section>
+      <!-- الرسالة الشخصية -->
+      <section class="letter-section">
+        <div class="blue-envelope">
+          <div class="letter-card">
+            <h3>Dear friends and family,</h3>
+            <p>As we get ready to say "I do", we feel grateful for the wonderful people in our lives. Your support means the world to us!</p>
+          </div>
+        </div>
+      </section>
 
-    <!-- 7. زر تأكيد الحضور (RSVP) -->
-    <section class="rsvp-section">
-      <button class="rsvp-btn" onclick="alert('شكراً لتأكيد حضورك!')">RSVP</button>
-    </section>
+      <!-- الجدول الزمني -->
+      <section class="timeline-section">
+        <h2>Schedule of Events</h2>
+        <div class="timeline">
+          <div class="timeline-item"><span>16:30</span><p>Opening of the doors</p></div>
+          <div class="timeline-item"><span>17:00</span><p>Ceremony</p></div>
+          <div class="timeline-item"><span>18:00</span><p>Cocktail and dancing time</p></div>
+          <div class="timeline-item"><span>20:00</span><p>Dinner</p></div>
+          <div class="timeline-item"><span>21:00</span><p>Party and Open Bar</p></div>
+        </div>
+      </section>
 
-  </main>
+      <!-- قواعد اللباس والمعرض -->
+      <section class="dress-code-section">
+        <h2>Dress Code</h2>
+        <p class="dress-desc">We would be very happy if your outfit is in the colours of the wedding theme.</p>
+        <div class="color-palette">
+          <span style="background:#fce4ec"></span>
+          <span style="background:#f8bbd0"></span>
+          <span style="background:#e1bee7"></span>
+          <span style="background:#bbdefb"></span>
+          <span style="background:#90caf9"></span>
+        </div>
+        <div class="gallery-slider">
+          <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=400&q=80" alt="Outfit 1">
+          <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=400&q=80" alt="Outfit 2">
+          <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=400&q=80" alt="Outfit 3">
+        </div>
+      </section>
+
+      <!-- تأكيد الحضور -->
+      <section class="rsvp-section">
+        <button class="rsvp-btn" onclick="alert('Thank you for confirming!')">RSVP</button>
+      </section>
+
+    </main>
+
+  </div>
 
   <script src="script.js"></script>
 </body>
