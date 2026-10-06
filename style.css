@@ -1,357 +1,65 @@
-* {
-  box-sizing: border-box;
-}
+// فتح الظرف والانتقال للمشهد الرئيسي
+document.getElementById('waxSeal').addEventListener('click', function() {
+  const envelopeCard = document.querySelector('.envelope-card');
+  const waxSeal = document.getElementById('waxSeal');
+  const openText = document.getElementById('openText');
+  const envelopeScene = document.getElementById('envelopeScene');
+  const invitationContent = document.getElementById('invitationContent');
+  const musicBtn = document.getElementById('music-toggle');
+  const music = document.getElementById('bg-music');
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Amiri', serif;
-  background-color: #f5efe6;
-  color: #4a3e3d;
-  display: flex;
-  justify-content: center;
-}
+  // إخفاء الختم والنص
+  waxSeal.style.opacity = '0';
+  openText.style.opacity = '0';
+  
+  // فتح غطاء الظرف
+  setTimeout(() => {
+    envelopeCard.classList.add('open');
+  }, 200);
 
-.invitation-container {
-  width: 100%;
-  max-width: 430px;
-  background: #fdfbf7;
-  min-height: 100vh;
-  box-shadow: 0 0 35px rgba(0,0,0,0.12);
-  position: relative;
-  overflow: hidden;
-}
+  // إخفاء مشهد الظرف وإظهار الدعوة والموسيقى
+  setTimeout(() => {
+    envelopeScene.style.display = 'none';
+    invitationContent.classList.remove('hidden');
+    musicBtn.classList.remove('hidden');
 
-/* ================= المشهد الأول: تصميم الظرف العاجي المحفور ================= */
-.envelope-scene {
-  height: 100vh;
-  background: radial-gradient(circle, #fcf9f2 0%, #ebe2d3 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  padding: 20px;
-}
+    if (music && music.src) {
+      music.play().catch(e => console.log("Music autoplay blocked by browser"));
+    }
+  }, 1200);
+});
 
-.envelope-card {
-  width: 100%;
-  max-width: 350px;
-  height: 520px;
-  background: #f7f1e5;
-  border-radius: 12px;
-  position: relative;
-  box-shadow: inset 0 0 15px rgba(255,255,255,0.8), 0 12px 30px rgba(110, 85, 60, 0.18);
-  border: 1px solid #e2d5c3;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+// التحكم في الموسيقى
+const music = document.getElementById('bg-music');
+const musicBtn = document.getElementById('music-toggle');
+const musicIcon = document.getElementById('music-icon');
 
-/* النقوش البارزة للظرف */
-.embossed-pattern-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(#d3c3ad 1px, transparent 1px);
-  background-size: 16px 16px;
-  opacity: 0.25;
-}
+musicBtn.addEventListener('click', () => {
+  if (music.paused) {
+    music.play();
+    musicIcon.textContent = '⏸';
+  } else {
+    music.pause();
+    musicIcon.textContent = '▶';
+  }
+});
 
-.top-flap {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 220px;
-  background: #f3ebd9;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  border-bottom: 2px solid #e0d1bc;
-  z-index: 3;
-  transition: transform 0.8s ease-in-out;
-  transform-origin: top;
-}
+// العداد التنازلي Countdown
+const targetDate = new Date("May 20, 2027 16:00:00").getTime();
 
-.envelope-card.open .top-flap {
-  transform: rotateX(180deg);
-  z-index: 0;
-}
+setInterval(() => {
+  const now = new Date().getTime();
+  const difference = targetDate - now;
 
-/* الختم الشمعي الكريمي اللؤلؤي */
-.cream-seal {
-  position: absolute;
-  top: 48%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 95px;
-  height: 95px;
-  background: radial-gradient(circle, #fcfaf5 0%, #e8dbc8 100%);
-  border-radius: 50%;
-  box-shadow: 0 10px 22px rgba(0,0,0,0.18), inset 0 3px 6px rgba(255,255,255,0.9);
-  border: 2px solid #dcc9b0;
-  cursor: pointer;
-  z-index: 5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.3s, opacity 0.5s;
-}
+  if (difference > 0) {
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-.cream-seal:hover {
-  transform: translate(-50%, -50%) scale(1.05);
-}
-
-.seal-inner-flower {
-  text-align: center;
-  font-size: 18px;
-  color: #8c7151;
-  line-height: 1.1;
-}
-
-/* النص الخارجي "اضغط للفتح" */
-.click-to-open-text {
-  position: absolute;
-  top: 61%;
-  font-family: 'Amiri', serif;
-  font-size: 19px;
-  color: #8c7151;
-  letter-spacing: 1px;
-  z-index: 4;
-  transition: opacity 0.4s;
-}
-
-/* ================= المشهد الثاني: التصميم الداخلي ================= */
-.hero-header {
-  height: 480px;
-  background: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 40px;
-}
-
-.hero-overlay {
-  background: linear-gradient(to top, rgba(253, 251, 247, 1) 15%, rgba(253, 251, 247, 0.2) 100%);
-  width: 100%;
-  padding: 40px 20px 10px;
-  text-align: center;
-}
-
-.names-title {
-  font-family: 'Great Vibes', cursive;
-  font-size: 55px;
-  color: #7a5c28;
-  margin: 0;
-  font-weight: normal;
-}
-
-.hero-date {
-  font-family: 'Amiri', serif;
-  font-size: 18px;
-  color: #555;
-  margin-top: 5px;
-}
-
-.card-section {
-  padding: 30px 25px;
-  border-bottom: 1px solid #ebdccb;
-}
-
-.bismillah {
-  font-family: 'Amiri', serif;
-  font-size: 26px;
-  color: #8c6a2d;
-  margin-bottom: 15px;
-}
-
-.couple-arabic {
-  font-size: 22px;
-  color: #333;
-  margin-bottom: 15px;
-}
-
-.invitation-text {
-  font-size: 18px;
-  line-height: 1.8;
-  color: #555;
-}
-
-.event-date-details {
-  font-size: 19px;
-  line-height: 1.7;
-  color: #7a5c28;
-  margin: 20px 0;
-}
-
-.hall-name span {
-  font-size: 20px;
-  font-weight: bold;
-  color: #333;
-}
-
-/* العداد التنازلي Countdown */
-.section-title-en {
-  font-family: 'Great Vibes', cursive;
-  font-size: 38px;
-  color: #8c6a2d;
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-weight: normal;
-}
-
-.countdown-timer {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  direction: ltr;
-}
-
-.time-box {
-  background: #f5ebe0;
-  padding: 10px 14px;
-  border-radius: 8px;
-  min-width: 65px;
-  border: 1px solid #e3d5c3;
-}
-
-.time-box span {
-  display: block;
-  font-size: 22px;
-  font-weight: bold;
-  color: #7a5c28;
-}
-
-.time-box small {
-  font-size: 11px;
-  color: #777;
-}
-
-/* الجدول الزمني Timeline */
-.timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  direction: ltr;
-}
-
-.timeline-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-}
-
-.timeline-row .time {
-  font-weight: bold;
-  color: #8c6a2d;
-  width: 50px;
-  text-align: right;
-}
-
-.line-node {
-  width: 12px;
-  height: 12px;
-  background: #d4af37;
-  border-radius: 50%;
-}
-
-.timeline-row .event {
-  width: 150px;
-  text-align: left;
-  font-size: 17px;
-}
-
-/* الخريطة */
-.venue-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin: 15px 0;
-}
-
-.map-btn {
-  display: inline-block;
-  background: #7a5c28;
-  color: #fff;
-  text-decoration: none;
-  padding: 12px 25px;
-  border-radius: 25px;
-  font-size: 16px;
-  transition: background 0.3s;
-}
-
-/* Formspree RSVP */
-.rsvp-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  text-align: right;
-}
-
-.input-group label {
-  display: block;
-  font-size: 16px;
-  margin-bottom: 5px;
-  color: #555;
-}
-
-.input-group input[type="text"],
-.input-group input[type="number"] {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #d3c4b1;
-  border-radius: 8px;
-  background: #fff;
-  font-size: 16px;
-}
-
-.radio-options {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 5px;
-}
-
-.radio-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-}
-
-.submit-btn {
-  background: #8c6a2d;
-  color: #fff;
-  border: none;
-  padding: 14px;
-  font-size: 18px;
-  border-radius: 25px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background 0.3s;
-}
-
-/* Floating Music Button */
-.music-btn {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  width: 45px;
-  height: 45px;
-  background: #8c6a2d;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  font-size: 20px;
-  z-index: 99;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  cursor: pointer;
-}
-
-.text-center { text-align: center; }
-.hidden { display: none !important; }
+    document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+    document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+    document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+    document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+  }
+}, 1000);
